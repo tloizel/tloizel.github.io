@@ -1,7 +1,7 @@
 body {
-    font-family: montserrat, sans-serif;
+    font-family: arial, sans-serif;
     background-color: #e9ebf0;
-    zoom: 75%;
+    zoom: 73%;
   }
   
   .unselectable {
@@ -545,11 +545,11 @@ body {
   
   .projectTitle {
     font-weight: bold;
-    font-size: 1.5vw;
+    font-size: 20px;
   }
   
   .projectDesc {
-    font-size: 1vw;
+    font-size: 14px;
   }
   
   .project.animated{
@@ -578,3 +578,21 @@ body {
     100% {opacity: 1;
     color: white;}
   }
+
+.settingsButton {
+  border: none;
+  cursor: pointer;
+}
+
+.settingsButton:focus {
+  outline: 0;
+}
+
+.alignRight {
+  text-align: right;
+  margin-bottom: -1em;
+}
+
+.settingsButton {
+background-color: #e9ebf0;
+}
