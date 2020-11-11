@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="keywords" content="notyoutube, incremental, incremental game, idle, idle game, click, clicking, clicker"/>
-    <meta name="description" content="notYouTube - An incremental game for YouTube fame. Click your way to 100M subscribers."/>
+    <meta name="keywords" content="notyoutube, incremental game, clicker"/>
+    <meta name="description" content="notYouTube, an incremental game for YouTube fame. Click your way to 100M subscribers."/>
     <meta name="author" content="Thomas Loizel and Axel Von Arx"/>
-    <title>notYouTube</title>
+    <title>notYouTube - An incremental game for YouTube fame</title>
     <link rel="icon" href="favicon.ico" type="image/ico"/>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <!-- Open Graph -->
@@ -14,13 +14,15 @@
     <meta prefix="og: http://ogp.me/ns#" property="og:description" content="Click your way to 100M subscribers"/>
     <meta prefix="og: http://ogp.me/ns#" property=”og:url” content=”https://notyoutube.dev”/>
     <meta prefix="og: http://ogp.me/ns#" property=”og:type” content=”website”/>
-    <meta prefix="og: http://ogp.me/ns#" property="og:image" content="https://notyoutube.dev/media_image.jpg">
+    <meta prefix="og: http://ogp.me/ns#" property="og:image" content="https://notyoutube.dev/media_image.jpg"/>
+    <meta prefix="og: http://ogp.me/ns#" property="og:image:alt" content="notYouTube"/>
      <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content="notYouTube - An incremental game for YouTube fame"/>
     <meta name="twitter:description" content="Click your way to 100M subscribers"/>
-    <meta name=twitter:site” content=”https://notyoutube.dev”/>
-    <meta name="twitter:image" content="https://notyoutube.dev/media_image.jpg">
+    <meta name="twitter:site" content=”https://notyoutube.dev”/>
+    <meta name="twitter:image" content="https://notyoutube.dev/media_image.jpg"/>
+    <meta name="twitter:image:alt" content="notYouTube"/>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173995219-1"></script>
@@ -43,85 +45,110 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
     
+    <script type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="numeral.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/mathusummut/confetti.js/confetti.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
   </head>
   
-  <body>
+  <body class="mobile-background">
     <!-- Google Tag Manager (noscript) -->
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P6ZPSHH"
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     
     <div id="desktop">
-      <div class="header flex-row">
-        <div><span id="views" class="viewsBig">0</span> views</div>
+      <div class="white"></div>
+      <div class="header flex-row flex-wrap sticky0">
+        <div class="flex-row flex-end">
+          <div id="subscriberAmount" class="viewsBig mobile-subsBigNum">0</div>
+          <div class="flex-column subscribersBig mobile-subsBig">
+            <div id="subDifference" class="zero-margin subDifferenceClass">+0</div>
+            <div>subscribers</div>
+          </div>
+        </div>
         <div class="small-right-margin">
-          <div class="notYoutube">notYouTube</div>
-          <button class="settingsButton" onclick=deleteLocalStorage()><i class="fa fa-2x fa-trash" aria-hidden="true"></i></button>
+          <h1 class="hidden">notYouTube</h1>
+          <div>
+            <button class="settingsButton" onclick=deleteLocalStorage()><i class="fa fa-2x fa-trash" aria-hidden="true"></i></button>
+            <button class="settingsButton" onclick=scoreModalOpen();allScores()><i class="fa fa-2x fa-trophy" aria-hidden="true"></i></button>
+            <p id="prestige" class="reveal">P1</p>
+          </div>
         </div>
       </div>
+
       <!--Start of parentFlex 1-->
       <div class = "flex-row parentFlex">
         <!--Start of COMMENTS-->
-        <div class = "childFlexWide">
-          <div class = "childFlexTopWide">
-            <h2>Comments</h2>
-            <div class="comments">
-              <span>&nbsp;•&nbsp;</span><span id="comment1"></span><br>
-              <span>&nbsp;•&nbsp;</span><span class="oldComment" id="comment2"></span><br>
-              <span>&nbsp;•&nbsp;</span><span class="oldComment" id="comment3"></span><br>
-              <span>&nbsp;•&nbsp;</span><span class="oldComment" id="comment4"></span><br>
-              <span>&nbsp;•&nbsp;</span><span class="oldComment" id="comment5"></span><br>
-              <span>&nbsp;•&nbsp;</span><span class="oldComment" id="comment6"></span><br>
-              <span>&nbsp;•&nbsp;</span><span class="oldComment" id="comment7"></span><br>
-              <span>&nbsp;•&nbsp;</span><span class="oldComment" id="comment8"></span><br>
+          <div class = "childFlexWide mobile-child-flex-width mobile-comments-margin">
+            <div class = "childFlexTopWide overflowY-scroll mobile-noboxshadow mobile-no-height block-bg-color">
+              <h2 class="hidden">Comments</h2>
+              <div class="comments mobile-commentbox-padding">
+                <span>&nbsp;•&nbsp;</span><span id="comment1"></span><br>
+                <span>&nbsp;•&nbsp;</span><span class="oldComment" id="comment2"></span><br>
+                <span>&nbsp;•&nbsp;</span><span class="oldComment" id="comment3"></span><br>
+                <span>&nbsp;•&nbsp;</span><span class="oldComment" id="comment4"></span><br>
+                <span>&nbsp;•&nbsp;</span><span class="oldComment" id="comment5"></span><br>
+                <span>&nbsp;•&nbsp;</span><span class="oldComment" id="comment6"></span><br>
+                <span>&nbsp;•&nbsp;</span><span class="oldComment" id="comment7"></span><br>
+                <span>&nbsp;•&nbsp;</span><span class="oldComment" id="comment8"></span><br>
+              </div>
             </div>
           </div>
-        </div> 
         <!--End of COMMENTS--> 
         <!--Start of ANALYTICS-->
-        <div class="childFlexShort">
-          <div class="childFlexTopShort">
+        <div class="childFlexShort reveal mobile-child-flex-width mobile-child-flex-margin flex-order5">
+          <div class="childFlexTopShort mobile-noboxshadow mobile-no-height block-bg-color">
             <h2>Analytics</h2>
             <p class="explanation tightP">Like/Dislike ratio<span id="likeDislikeRatio" class="span">0%<span></p>
-            <p class="explanation tightP">Popularity factor<span id="likeDislikeFactor" class="span">1<span></p>
-            <p class="explanation tightP">Subscribers<span id="subscriberAmount" class="span">0</span><span id="subDifference" class="subDifferenceClass">+0</span></p>
+            <p class="explanation tightP">Popularity factor<span id="likeDislikeFactor" class="span">1.00<span></p>
+            <p class="explanation tightP">Views<span id="views" class="span">0</span></p>
           </div>
           <div  id="subProjectsB"
                 class="project"
                 onclick="callProject(subProjectsB,subProjects,subProjectsTitle,subProjectsDesc,0);refreshFitty()">
             <span class="projectTitle" id="subProjectsTitle">Reply to comments</span><br>
-            <span class="projectDesc" id="subProjectsDesc">Reach 50 subscribers</span>
+            <span class="projectDesc" id="subProjectsDesc">Reach 50 subscribers or 500 views</span>
           </div> 
         </div> <!--End of child ANALYTICS-->
-      </div> <!--End of parent flex 1-->
+       <!--End of parent flex 1-->
 
-      <!--Start of parentFlex 2-->
-      <div class="flex-row parentFlex">
-        <div class="childFlex">
-          <div class="childFlexTop">
+        <!--Start of parentFlex 2-->
+        <div class="childFlex mobile-child-flex-width mobile-child-flex-margin">
+          <div class="childFlexTop mobile-noboxshadow mobile-no-height block-bg-color">
             <h2>Idea</h2>
-            <div>
-              <input  class="button"
-                      type="button" 
-                      id="startTimer"
-                      onclick="startIdeaTicker()" 
-                      value="Think"/>
-              <input  class="button"
-                      type="button" 
-                      id="stopTimer"
-                      onclick="stopIdeaTicker()" 
-                      value="Sleep"/>
-            </div>        
-            <div class="bulbFrame" id="bulbFrameDiv"> 
-              <svg width="76px" height="94px" viewBox="0 0 76 94" id="bulb" onclick="void(0);">
-                <path d="M76,37.037 C76,59.939 55.6428571,75.427 55.6428571,93.5 L20.3571429,93.5 C20.3571429,75.427 0,59.9335 0,37.037 C0,13.1505 18.9891429,0 37.9782857,0 C56.9891429,0 76,13.167 76,37.037 L76,37.037 Z"></path>
-              </svg>
-              <div id="glow"></div>
-              <svg width="32px" height="33px" viewBox="0 0 32 33" id="base">
-                <path d="M29.3333333,0 L2.66666667,0 C1.19466667,0 0,1.232 0,2.75 C0,4.268 1.19466667,5.5 2.66666667,5.5 L29.3333333,5.5 C30.8053333,5.5 32,4.268 32,2.75 C32,1.232 30.8053333,0 29.3333333,0 L29.3333333,0 Z M29.3333333,11 L2.66666667,11 C1.19466667,11 0,12.232 0,13.75 C0,15.268 1.19466667,16.5 2.66666667,16.5 L29.3333333,16.5 C30.8053333,16.5 32,15.268 32,13.75 C32,12.232 30.8053333,11 29.3333333,11 L29.3333333,11 Z M30.6666667,22 L1.33333333,22 L9.072,31.1245 C10.0853333,32.3125 11.552,33 13.088,33 L18.9173333,33 C20.4533333,33 21.9146667,32.3125 22.928,31.1245 L30.6666667,22 L30.6666667,22 Z"></path>
-              </svg>
+            <div class="flex-row" id="bulbDiv">
+              <div id="thinkSleep">
+                <div>
+                  <input  class="button"
+                          type="button" 
+                          id="startTimer"
+                          onclick="startIdeaTicker()" 
+                          value="Think"/>
+                  </div>
+                  <div>        
+                    <input  class="button"
+                            type="button" 
+                            id="stopTimer"
+                            onclick="stopIdeaTicker()" 
+                            value="Sleep"/>
+                  </div>
+              </div>    
+              <div class="bulbFrame" id="bulbFrameDiv"> 
+                <svg width="76px" height="94px" viewBox="0 0 76 94" id="bulb" onclick="void(0);">
+                  <path d="M76,37.037 C76,59.939 55.6428571,75.427 55.6428571,93.5 L20.3571429,93.5 C20.3571429,75.427 0,59.9335 0,37.037 C0,13.1505 18.9891429,0 37.9782857,0 C56.9891429,0 76,13.167 76,37.037 L76,37.037 Z"></path>
+                </svg>
+                <div id="glow"></div>
+                <svg width="32px" height="33px" viewBox="0 0 32 33" id="base">
+                  <path d="M29.3333333,0 L2.66666667,0 C1.19466667,0 0,1.232 0,2.75 C0,4.268 1.19466667,5.5 2.66666667,5.5 L29.3333333,5.5 C30.8053333,5.5 32,4.268 32,2.75 C32,1.232 30.8053333,0 29.3333333,0 L29.3333333,0 Z M29.3333333,11 L2.66666667,11 C1.19466667,11 0,12.232 0,13.75 C0,15.268 1.19466667,16.5 2.66666667,16.5 L29.3333333,16.5 C30.8053333,16.5 32,15.268 32,13.75 C32,12.232 30.8053333,11 29.3333333,11 L29.3333333,11 Z M30.6666667,22 L1.33333333,22 L9.072,31.1245 C10.0853333,32.3125 11.552,33 13.088,33 L18.9173333,33 C20.4533333,33 21.9146667,32.3125 22.928,31.1245 L30.6666667,22 L30.6666667,22 Z"></path>
+                </svg>
+              </div>
+              <div class="flex-column">
+                <ion-icon name="alarm" style="font-size: 28px;" class="reveal"></ion-icon>
+                <br>
+                <i class="fa fa-lg fa-bed reveal"></i>
+              </div>
             </div>
             <div class="flex-row ideaRangeDiv">
               <div>
@@ -141,6 +168,7 @@
                 <div><span id="idea">1</span></div>
               </div>
             </div>
+            <p class="explanation tightP">Energy<span id="energy" class="span">100</span><span id="energyRefreshNum" class="subDifferenceClassEnergy"></span></p>
             <p class="rainbow-text explanation tightP">Creativity Level<span id="creativityLvl" class="span">1</span></p>
             <p class="explanation tightP">Ideas generated<span id="ideasGenTotal" class="span">0</span></p> 
             <p class="explanation tightP">Ideas ready to edit<span id="ideasGen" class="span">0</span></p>
@@ -149,19 +177,19 @@
           <div  id="ideaProjectsB"
                 class="project"
                 onclick="callProject(ideaProjectsB,ideaProjects,ideaProjectsTitle,ideaProjectsDesc,1);refreshFitty()">
-            <span class="projectTitle" id="ideaProjectsTitle">Binge watch YouTube</span><br>
-            <span class="projectDesc" id="ideaProjectsDesc">Generate 5 ideas</span>
+            <span class="projectTitle" id="ideaProjectsTitle">Start thinking</span><br>
+            <span class="projectDesc" id="ideaProjectsDesc">Generate 1 idea</span>
           </div>
         </div> <!--end of child flex IDEA-->
 
-        <div class = "childFlex">
-          <div class = "childFlexTop">
+        <div class = "childFlex reveal mobile-child-flex-width mobile-child-flex-margin" id="childFlexEdit">
+          <div class = "childFlexTop mobile-noboxshadow mobile-no-height block-bg-color" id="childFlexTopNoRightClick">
             <h2>Edit</h2>
               <div class="flex-row align-center">
                 <div class="empty"></div>
                 <div id="SECircleContainer">
                   <div  class="progress-holder unselectable"
-                        onclick="clicksLeft()">
+                        onclick="">
                     <div class="semi-circle"></div>
                     <div class="left-block"></div>
                     <div class="right-block"></div>
@@ -181,21 +209,21 @@
           <div  id="shootEditProjectsB"
                 class="project"
                 onclick="callProject(shootEditProjectsB,shootEditProjects,shootEditProjectsTitle,shootEditProjectsDesc,2);refreshFitty()">
-                <span class="projectTitle" id="shootEditProjectsTitle">Watch an iMovie tutorial</span><br>
-                <span class="projectDesc" id="shootEditProjectsDesc">Edit 3 videos</span>
+                <span class="projectTitle" id="shootEditProjectsTitle">Start Editing</span><br>
+                <span class="projectDesc" id="shootEditProjectsDesc">Edit 1 video</span>
           </div>
         </div> <!--end of child flex SHOOT AND EDT-->
 
-        <div class = "childFlex">
-          <div class = "childFlexTop">
+        <div class = "childFlex reveal mobile-child-flex-width mobile-child-flex-margin">
+          <div class = "childFlexTop mobile-noboxshadow mobile-no-height block-bg-color">
             <h2>Upload</h2>
             <p class="explanation tightP">Videos ready to upload</p>
             <div id="pipeline"><span id="arrayQlViewColor">0</span><span id="arrayQlView">0</span></div>
             <br>
-            <input  class="button small-top-margin small-bottom-margin"
+            <input  class="button largestButton small-top-margin small-bottom-margin"
                     id="uploadB"
                     type="button"
-                    value="Upload Video"
+                    value="Upload"
                     onclick="uploadVideo()">
             <br>
             <div id="myProgress">
@@ -209,14 +237,14 @@
           <div  id="uploadProjectsB"
                 class="project"                    
                 onclick="callProject(uploadProjectsB,uploadProjects,uploadProjectsTitle,uploadProjectsDesc,3);refreshFitty()">
-            <span class="projectTitle" id="uploadProjectsTitle">Upload videos from school library</span><br>
-            <span class="projectDesc" id="uploadProjectsDesc">Upload 3 videos</span>
+            <span class="projectTitle" id="uploadProjectsTitle">Start uploading</span><br>
+            <span class="projectDesc" id="uploadProjectsDesc">Upload 1 video</span>
           </div>
         </div> <!--end of child flex UPLOAD-->
 
         <!--Start of child flex CASH-->
-        <div class = "childFlex reveal">
-          <div class = "childFlexTop">
+        <div class = "childFlex reveal mobile-child-flex-width mobile-child-flex-margin">
+          <div class = "childFlexTop mobile-noboxshadow mobile-no-height block-bg-color">
             <h2>Piggy Bank</h2>
             <!-- <input  class="button"
                     type="button"
@@ -244,6 +272,9 @@
                       value="+"
                       onclick="changeAdLoad(1)">
             </div>
+            <div id="donationContainer" class="reveal">
+              <canvas id="signatureCanvas" class="small-top-margin"></canvas>
+            </div>
           </div>
 
           <div  id="cashProjectsB"
@@ -254,17 +285,213 @@
           </div>
         </div> <!--end of child flex CASH-->
       </div> <!--End of parent flex 2-->      
-    
+
+            <!-- SLEEP MODAL -->     
+      <!-- The Modal -->
+      <div id="sleepingModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>💤 You fell asleep! 💤</h2>
+          </div>
+          <div class="modal-body">
+            <p>The game will pause as an inactive tab.</p>
+            <p>If you want to let notYouTube run in the background, leave it as an active separate window.</p>
+          </div>
+          <div class="modal-footer">
+            <button class="button" id="sleepBut1" onclick="sleepModalReminderTrue()">Remind me later</button>
+            <button class="button" id="sleepBut2" onclick="sleepModalReminderFalse()">Got it, don't remind me again it's annoying</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- INSERT NAME MODAL -->     
+      <!-- The Modal -->
+      <div id="channelModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Enter channel name</h2>
+          </div>
+          <div class="modal-body">
+            <input type="text" id="channelInput" name="channelname" required minlength="0" maxlength="14" onkeypress="CheckSpace(event)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+          </div>
+          <div class="modal-footer">
+            <button class="button" id="channelBut1" onclick="insertName()">Let's start</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRESTIGEE MODAL -->     
+      <!-- The Modal -->
+      <div id="prestigeModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Select prestige bonus</h2>
+          </div>
+          <div class="modal-body">
+            <div class="prestige">
+              <div class="prestigeOption" id="option1" onclick="prestigeOptionSelect('option1')">
+                <p><b>Option 1</b></p>
+                <p>Start with +1 creativity</p>
+              </div>
+              <div class="prestigeOption" id="option2" onclick="prestigeOptionSelect('option2')">
+                <p><b>Option 2</b></p>
+                <p>+25% editing speed</p>
+              </div>
+              <div class="prestigeOption" id="option3" onclick="prestigeOptionSelect('option3')">
+                <p><b>Option 3</b></p>
+                <p>+25% upload speed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EMPTY ARRAY MODAL -->     
+      <!-- The Modal -->
+      <div id="emptyArrayModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Delete <em>videos ready to upload</em> ?</h2>
+          </div>
+          <div class="modal-body">
+            <p>This is a one time offer.</p>
+            <p>Do you wish to delete your videos ready to upload?</p>
+          </div>
+          <div class="modal-footer">
+            <button class="button" id="emptyArrayBut1" onclick="emptyArrayModalFalse()">No, I'm doing great thanks</button>
+            <button class="button" id="emptyArrayBut2" onclick="emptyArrayModalTrue()">OMG yes please</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESTART MODAL -->     
+      <!-- The Modal -->
+      <div id="restartModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class=close id="closeRestartModal">&times;</span> 
+          <div class="modal-header">
+            <h2>Restart?</h2>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to reset the game?</p>
+            <p>Your channel will be lost in YouTube limbo.</p>
+          </div>
+          <div class="modal-footer">
+            <button class="button" id="restartBut1" onclick="restartModalFalse()">No, I want to keep playing</button>
+            <button class="button" id="restartBut2" onclick="restartModalTrue()">Yes, I need to start afresh</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCORE MODAL -->     
+      <!-- The Modal -->
+      <div id="scoreModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class=close id="closeScoreModal">&times;</span> 
+          <div class="modal-header">
+            <h2>Top 10 channels</h2>
+          </div>
+          <div class="modal-body">
+            <p id="yourScore">Your <span id="currentOrFinal">current</span> time <br> <span id="showScore"></span></p>
+            <div id="loading">
+              <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
+            <div id="loaded">
+              <table id="scoreboard">
+                <tr>
+                  <th>Rank</th>
+                  <th>Channel</th>
+                  <th>Prestige</th> 
+                  <th>Time</th>
+                </tr>
+                <tr>
+                  <td class="tableData">#1</td>
+                  <td id="tdChannel1" class="tableData"></td>
+                  <td id="tdPrestige1" class="tableData"></td> 
+                  <td id="tdScore1" class="tableData"></td>
+                </tr>
+                <tr>
+                  <td class="tableData">#2</td>
+                  <td id="tdChannel2" class="tableData"></td>
+                  <td id="tdPrestige2" class="tableData"></td> 
+                  <td id="tdScore2" class="tableData"></td>
+                </tr>
+                <tr>
+                  <td class="tableData">#3</td>
+                  <td id="tdChannel3" class="tableData"></td>
+                  <td id="tdPrestige3" class="tableData"></td> 
+                  <td id="tdScore3" class="tableData"></td>
+                </tr>
+                <tr>
+                  <td class="tableData">#4</td>
+                  <td id="tdChannel4" class="tableData"></td>
+                  <td id="tdPrestige4" class="tableData"></td> 
+                  <td id="tdScore4" class="tableData"></td>
+                </tr>
+                <tr>
+                  <td class="tableData">#5</td>
+                  <td id="tdChannel5" class="tableData"></td>
+                  <td id="tdPrestige5" class="tableData"></td> 
+                  <td id="tdScore5" class="tableData"></td>
+                </tr>
+                <tr>
+                  <td class="tableData">#6</td>
+                  <td id="tdChannel6" class="tableData"></td>
+                  <td id="tdPrestige6" class="tableData"></td> 
+                  <td id="tdScore6" class="tableData"></td>
+                </tr>
+                <tr>
+                  <td class="tableData">#7</td>
+                  <td id="tdChannel7" class="tableData"></td>
+                  <td id="tdPrestige7" class="tableData"></td> 
+                  <td id="tdScore7" class="tableData"></td>
+                </tr>
+                <tr>
+                  <td class="tableData">#8</td>
+                  <td id="tdChannel8" class="tableData"></td>
+                  <td id="tdPrestige8" class="tableData"></td> 
+                  <td id="tdScore8" class="tableData"></td>
+                </tr>
+                <tr>
+                  <td class="tableData">#9</td>
+                  <td id="tdChannel9" class="tableData"></td>
+                  <td id="tdPrestige9" class="tableData"></td> 
+                  <td id="tdScore9" class="tableData"></td>
+                </tr>
+                <tr>
+                  <td class="tableData">#10</td>
+                  <td id="tdChannel10" class="tableData"></td>
+                  <td id="tdPrestige10" class="tableData"></td> 
+                  <td id="tdScore10" class="tableData"></td>
+                </tr>
+            
+             </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="button" id="gotoprestige" onclick="scoreModalClose()">Select prestige bonus</button>
+          </div>
+        </div>
+      </div>
+
+      
       <script src="fitty.min.js"></script>
       <script src="fittyProjects.js" type="text/javascript"></script>
       <script src="loadAppearFunctions.js" type="text/javascript"></script>
-      <script type="text/javascript" src="script.js"></script>
+      <script src="charityBox.js" type="text/javascript"></script>
+      <script src="script.js" type="text/javascript"></script>
     </div>
 
-    <div id="mobile">
+    <!--<div id="mobile">
       <p>You'll need a laptop for this. <br>And excellent clicking abilities.</p>
       <img src="click.png" alt="click" style="width:2em">
-    </div>
+    </div>-->
 
   </body>
 </html>

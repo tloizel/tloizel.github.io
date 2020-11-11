@@ -7,7 +7,7 @@ html {
 body {
   min-height: 100%;
   font-family: Rubik, sans-serif;
-  background-color: #f5f6fa;
+  background-color: #ffffff;
   margin: 0; /* to remove default page margins */
 }
 
@@ -19,21 +19,11 @@ body {
   margin-inline-end: 0px;
 }
 
-@media screen and (max-width: 1120px) {
-  #desktop {
-      display: none;
-  }
-}
-
-@media screen and (min-width: 1121px) {
-  #mobile {
-      display: none;
-  }
-}
-
-#mobile {
-  text-align: center;
-  margin-top: 10em;
+h1 {
+  font-size: 2vh;
+  margin-top: 0.5vh;
+  margin-bottom: 0vh;
+  font-weight: normal;
 }
 
 h2 {
@@ -42,8 +32,13 @@ h2 {
 }
 
 .header {
-  height: 4%;
+  /*height: 4%;*/
   justify-content: space-between;
+  align-items: flex-start;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  /*min-width: 400px;*/
 }
 
 .viewsBig {
@@ -53,28 +48,39 @@ h2 {
   padding-left: 2vw;
 }
 
-.notYoutube {
-  font-size: 2vh;
-  margin-top: 0.5vh;
-}
-
 .settingsButton {
   border: none;
   cursor: pointer;
   float: right;
-  background-color: #f5f6fa;
+  background-color: #ffffff;
   padding: 0; /* to remove default padding */
   margin-top: .3em;
   margin-bottom: .3em;
+  margin-left: .3em;
 }
 
 .settingsButton:focus {
   outline: 0;
 }
 
+#prestige {
+  border: none;
+  cursor: default;
+  float: right;
+  background-color: #ffffff;
+  padding: 0; /* to remove default padding */
+  margin-top: 0.3em;
+  margin-right: .2em;
+  margin-left: .3em;
+}
+
 .flex-row {
   display: flex;
   flex-direction: row;
+}
+
+.flex-wrap{
+  flex-wrap: wrap;
 }
 
 .align-center {
@@ -89,12 +95,34 @@ h2 {
   margin-right: 1em;
 }
 
+.small-left-margin {
+  margin-left: 1em;
+}
+
 .small-top-margin {
   margin-top: 1em;
 }
 
 .small-bottom-margin {
   margin-bottom: 1em;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-end {
+  align-items: flex-end;
+}
+
+.subscribersBig {
+  font-size: 3vh;
+  padding: 0 0 0.8vh 0.6vh;
+}
+
+.zero-margin { /* used to delete margins added by other classes on an object*/
+  margin: 0 0 0 0 !important;
 }
 
 .unselectable {
@@ -191,22 +219,42 @@ h2 {
   padding: 0px;
 }
 
+.largestButton {
+  height: 30px;
+  width: 82%;
+  vertical-align: middle;
+  padding: 0px;
+}
+
+#bulbDiv{
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-bottom: 2em;
+}
+
+#bulbFrameDiv{
+  width: 90px
+}
+
+#startTimer{
+  margin-bottom: 2vh;
+}
+
 /* IDEA BULB */
 .bulbFrame {
-  border:solid red;
   position: relative;
   text-align: center;
-  height: 7.5em;
   cursor: default;
   border: 0;
-  transform: scale(0.7,0.7)
+  transform: scale(0.7,0.7);
 }
 
 #bulb {
   position: absolute;
   z-index: 2;
-  top: 0px;
-  left: 37%;
+  top: -60px;
+  left: 10%;
   fill: #FFD700;
   transition: all .5s ease-in-out;
 }
@@ -218,16 +266,16 @@ h2 {
   background: #fff130;
   border-radius: 50px;
   box-shadow: 0 0 50px 10px #fff130;
-  top: 0px;
-  left: 37%;
+  top: -60px;
+  left: 10%;
   transition: all .5s ease-in-out;
 }
 
 #base {
   position: absolute;
   width: 76px;
-  top: 99px;
-  left: 37%;
+  top: 39px;
+  left: 10%;
   fill: #000000;
 }
 
@@ -302,13 +350,20 @@ h2 {
 }
 
 /* FLEXBOX START */
-
 .parentFlex {
-  justify-content: space-between;
+  /*justify-content: space-between;*/
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
 
 .childFlex {
   width: calc(25% - 2em);
+  min-width: calc(273px - 10px);
   text-align: center;
   margin: 1% 1em 0em 1em;
 }
@@ -319,14 +374,14 @@ h2 {
   margin-bottom: 1.5vh;
   border-radius: 20px;
   box-shadow: -5px -5px 10px #ffffffb2, 5px 5px 10px rgba(94, 104, 121, 0.945);
-  background-color: #edeff2;
 }
 
 /* Analytics container */
 .childFlexShort {
   width: calc(25% - 2em);
+  min-width: calc(273px - 10px);
   text-align: center;
-  margin-right: 1em;
+  margin-left: 2em;
 }
 
 .childFlexTopShort {
@@ -334,27 +389,22 @@ h2 {
   margin-bottom: 1.5vh;
   border-radius: 20px;
   box-shadow: -5px -5px 10px #ffffffb2, 5px 5px 10px rgba(94, 104, 121, 0.945);
-  background-color: #edeff2;
 }
 
 /* Comments container */
 .childFlexWide {
   width: calc(75% - 2em);
+  min-width: calc(273px - 10px);
   align-items: stretch;
   text-align: center;
   margin-left: 1em;
 }
 
 .childFlexTopWide {
+  /*max-height: 30vh;*/
   padding: 0.2em 0.5em 0.5em;
   border-radius: 20px;
   box-shadow: -5px -5px 10px #ffffffb2, 5px 5px 10px rgba(94, 104, 121, 0.945);
-  background-color: #edeff2;
-}
-
-.break {
-  flex-basis: 100%;
-  height: 0;
 }
 
 /* FLEXBOX END */
@@ -415,7 +465,7 @@ h2 {
   height: 100%;
   background: inherit;
   border-radius: 50%;
-  position:absolute;
+  position: absolute;
   top: 0px;
   left: 0px;
 }
@@ -449,7 +499,7 @@ h2 {
   position: absolute;
   left: 10%;
   top: 10%;
-  background: #edeff2ce;
+  background: #e3e5e7;
   border-radius: 50%;
   text-align: center;
   box-shadow: inset -5px -5px 7px #ffffffb0, inset 5px 5px 7px rgba(94, 104, 121, 0.671);
@@ -565,6 +615,13 @@ h2 {
   margin-left: 5px;
 }
 
+.subDifferenceClassEnergy {
+  position: relative;
+  color:#BEBEBE;
+  opacity:1;
+  margin-left: 5px;
+}
+
 .subDifferenceClass.animatedRed {
   animation-name: animationRed;
   animation-duration: 3s;
@@ -577,14 +634,26 @@ h2 {
   animation-timing-function: ease-out;
 }
 
+.subDifferenceClassEnergy.animatedRed {
+  animation-name: animationRed;
+  animation-duration: 3s;
+  animation-timing-function: ease-out;
+}
+
+.subDifferenceClassEnergy.animatedGreen {
+  animation-name: animationGreen;
+  animation-duration: 3s;
+  animation-timing-function: ease-out;
+}
+
 @keyframes animationRed {
-  0%    {bottom:0px;opacity:100;color:red;}
+  0%    {bottom:0px;opacity:1;color:red;}
   100%   {bottom:10px;opacity:0;color:red;}
 
 }
 
 @keyframes animationGreen {
-  0%    {bottom:0px;opacity:100;color:green;}
+  0%    {bottom:0px;opacity:1;color:green;}
   100%   {bottom:10px;opacity:0;color:green;}
 }
 
@@ -612,7 +681,7 @@ h2 {
 }
 
 .storyComment {
-  color:green;
+  color:#3041BC;
   opacity:1;
 }
 
@@ -623,14 +692,31 @@ h2 {
   border-width: 2px;
   transition-duration: 50ms;
   border-radius: 20px;
-  cursor: pointer;
+  cursor: default;
   box-shadow: 0px 3px #999;
-  background-color: red;
+  background-color: rgb(189, 94, 94);
   color: white;
 }
 
 .valid {
   background-color: green;
+  cursor: pointer;
+}
+
+.valid:hover {
+  background-color: rgb(2, 173, 2);
+  cursor: pointer;
+}
+
+.valid:active {
+  background-color: green;
+  cursor: pointer;
+  box-shadow: 0px 0px #999;
+  transform: translateY(2px);
+}
+
+.negativeProject {
+  background-color: #3041BC;
 }
 
 .projectTitle {
@@ -678,3 +764,342 @@ h2 {
 .empty {
   width: 25%;
 }
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 5; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Header */
+.modal-header {
+  padding: 0.1em 1em;
+  background-color: red;
+  color: white;
+  text-align: center;
+}
+
+/* Modal Body */
+.modal-body {padding: 0em 1em;}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 0.2em 1em 1em 1em;
+  background-color: #fefefe;
+  color: white;
+  margin-bottom: 0.1em;
+  text-align: center;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: 10% auto; /* 15% from the top and centered */
+  padding: 0;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+/* The Close Button */
+.close {
+  color: #fefefe;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+/* score modal button */
+#gotoprestige {
+  display: none;
+  margin: 1em auto 1em auto;
+}
+
+.close:hover,
+.close:focus {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#scoreboard{
+  width: 90%;
+  margin: 0em auto 1em auto;
+
+}
+.tableData{
+  text-align: center;
+}
+
+#yourScore {
+  text-align: center;
+  font-size: 4vh;
+}
+
+#showScore {
+  font-weight: bold;
+}
+
+#channelInput{
+  display: block;
+  margin: 3em auto 3em auto;
+  font-size: 4vh;
+  font-family: Rubik, sans-serif;
+  text-align: center;
+}
+
+/* Prestige box css */
+.prestige {
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.prestigeOption {
+border: solid;
+border-color: red;
+width: calc(33% - 1em);
+text-align: center;
+margin: 1em;
+cursor: pointer;
+border-radius: 20px;
+}
+
+.prestigeOption:hover {
+background-color: red;
+color: white;
+}
+
+
+/* LOADING STATE FOR SCORES */
+/* show when loading */
+#loading {
+  display: block;
+  text-align: center;
+  margin-bottom: 1em;
+}
+/* show if loaded */
+#loaded {
+  display: none;
+}
+
+.lds-spinner {
+  color: black;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-spinner div {
+  transform-origin: 40px 40px;
+  animation: lds-spinner 1.2s linear infinite;
+}
+.lds-spinner div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 37px;
+  width: 6px;
+  height: 18px;
+  border-radius: 20%;
+  background: black;
+}
+.lds-spinner div:nth-child(1) {
+  transform: rotate(0deg);
+  animation-delay: -1.1s;
+}
+.lds-spinner div:nth-child(2) {
+  transform: rotate(30deg);
+  animation-delay: -1s;
+}
+.lds-spinner div:nth-child(3) {
+  transform: rotate(60deg);
+  animation-delay: -0.9s;
+}
+.lds-spinner div:nth-child(4) {
+  transform: rotate(90deg);
+  animation-delay: -0.8s;
+}
+.lds-spinner div:nth-child(5) {
+  transform: rotate(120deg);
+  animation-delay: -0.7s;
+}
+.lds-spinner div:nth-child(6) {
+  transform: rotate(150deg);
+  animation-delay: -0.6s;
+}
+.lds-spinner div:nth-child(7) {
+  transform: rotate(180deg);
+  animation-delay: -0.5s;
+}
+.lds-spinner div:nth-child(8) {
+  transform: rotate(210deg);
+  animation-delay: -0.4s;
+}
+.lds-spinner div:nth-child(9) {
+  transform: rotate(240deg);
+  animation-delay: -0.3s;
+}
+.lds-spinner div:nth-child(10) {
+  transform: rotate(270deg);
+  animation-delay: -0.2s;
+}
+.lds-spinner div:nth-child(11) {
+  transform: rotate(300deg);
+  animation-delay: -0.1s;
+}
+.lds-spinner div:nth-child(12) {
+  transform: rotate(330deg);
+  animation-delay: 0s;
+}
+@keyframes lds-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#signatureCanvas {
+  width: 90%;
+  height: 100px;
+  border: solid grey;
+  border-width: 3px;
+}
+
+.borderFlash {
+  animation-name: flash;
+  animation-duration: 1000ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+@keyframes flash {
+  0% {border-width: 3px; border-color: green;}
+  5% {border-width: 0px; border-color: green;}
+  10% {border-width: 3px; border-color: green;}
+  15% {border-width: 0px; border-color: green;}
+  20% {border-width: 3px; border-color: green;}
+  25% {border-width: 0px; border-color: green;}
+  30% {border-width: 3px; border-color: green;}
+  35% {border-width: 0px; border-color: green;}
+  40% {border-width: 3px; border-color: green;}
+  45% {border-width: 0px; border-color: green;}
+  50% {border-width: 3px; border-color: green;}
+  55% {border-width: 0px; border-color: green;}
+  100% {border-width: 3px; border-color: green;}
+}
+.block-bg-color {
+  background-color: #f5f6f7; /*#edeff2*/
+}
+
+@media (max-width: 800px) {
+  .block-bg-color {
+    background-color: #f5f6f7; /*#edeff2*/
+    border :rgb(255, 36, 36) solid 2px;
+  }
+  .mobile-child-flex-width {
+    width: calc(100% - 2em);
+  }
+
+  .mobile-child-flex-margin { /*Added to analytics to make it behave like other childflexs*/
+    margin: 0.5em 1em 1em 1em !important;
+  }
+
+  .mobile-comments-margin {
+    margin: 0.5em 1em 0em 1em;
+  }
+
+  .sticky0 {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    padding-top: 0.1em;
+  }
+  
+  /*.sticky1 {
+    position: sticky;
+    top: 5vh;
+    z-index: 3;
+  }*/
+
+  /*.overflowY-scroll {
+    overflow-y: scroll;
+  }*/
+
+  .mobile-subsBigNum {
+    font-size: 4vh;
+    padding-left: 4vw;
+  }
+
+  .mobile-subsBig {
+    font-size: 2vh;
+  }
+
+  .mobile-background {
+    background-color: #ffffff;
+    /*border :rgb(255, 36, 36) solid 1px;*/
+  }
+
+  .mobile-noboxshadow {
+    box-shadow: none;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .flex-order5 {
+    order: 5;
+  }
+
+  .mobile-commentbox-padding {
+    padding: 0.5em 0;
+  }
+
+  .mobile-no-height {
+    height: auto;
+  }
+
+}
+
+@media (max-width: 1140px) { /*To move analytics last and make ideas first on mobile*/
+  .flex-order5 {
+    order: 5;
+  }
+}
+
+/*.white {
+  background-color: red;
+  z-index: 2;
+  height: 40vh;
+  width: 100vw;
+  position: sticky;
+  top: 5%;
+}*/
+
+#icon-container {
+  min-width: 55px;
+}
+
+
+#mobile {
+  text-align: center;
+  margin-top: 10em;
+}
+
+
+
