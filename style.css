@@ -34,7 +34,7 @@ h2 {
 .header {
   /*height: 4%;*/
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
   background-color: #ffffff;
   margin: 0;
   padding: 0;
@@ -43,9 +43,14 @@ h2 {
 
 .viewsBig {
   font-family: Rubik, sans-serif;
-  font-size: 6vh;
+  font-size: 40px;
   width: 95%;
   padding-left: 2vw;
+}
+
+.subscribersBig {
+  font-size: 20px;
+  padding: 0 0 0.8vh 0.6vh;
 }
 
 .settingsButton {
@@ -116,21 +121,17 @@ h2 {
   align-items: flex-end;
 }
 
-.subscribersBig {
-  font-size: 3vh;
-  padding: 0 0 0.8vh 0.6vh;
-}
-
-.zero-margin { /* used to delete margins added by other classes on an object*/
+.zero-margin { /* used to delete margins added by other classes on an object */
   margin: 0 0 0 0 !important;
 }
 
 .unselectable {
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  -user-select: none;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version */
 }
 
 .rangeDescription {
@@ -414,6 +415,7 @@ h2 {
 }
 
 .reveal.animated {
+  display: block;
   animation-name: revealElement;
   animation-duration: 1000ms;
   animation-iteration-count: 1;
@@ -870,6 +872,7 @@ h2 {
 border: solid;
 border-color: red;
 width: calc(33% - 1em);
+min-width : 3em;
 text-align: center;
 margin: 1em;
 cursor: pointer;
@@ -975,7 +978,7 @@ color: white;
 
 #signatureCanvas {
   width: 90%;
-  height: 100px;
+  height: 80px;
   border: solid grey;
   border-width: 3px;
 }
@@ -988,28 +991,28 @@ color: white;
   animation-timing-function: ease-out;
 }
 @keyframes flash {
-  0% {border-width: 3px; border-color: green;}
-  5% {border-width: 0px; border-color: green;}
-  10% {border-width: 3px; border-color: green;}
-  15% {border-width: 0px; border-color: green;}
-  20% {border-width: 3px; border-color: green;}
-  25% {border-width: 0px; border-color: green;}
-  30% {border-width: 3px; border-color: green;}
-  35% {border-width: 0px; border-color: green;}
-  40% {border-width: 3px; border-color: green;}
-  45% {border-width: 0px; border-color: green;}
-  50% {border-width: 3px; border-color: green;}
-  55% {border-width: 0px; border-color: green;}
-  100% {border-width: 3px; border-color: green;}
+  0% {border-color: green;}
+  5% {border-color: #edeff2;}
+  10% {border-color: green;}
+  15% {border-color: #edeff2;}
+  20% {border-color: green;}
+  25% {border-color: #edeff2;}
+  30% {border-color: green;}
+  35% {border-color: #edeff2;}
+  40% {border-color: green;}
+  45% {border-color: #edeff2;}
+  50% {border-color: green;}
+  55% {border-color: #edeff2;}
+  100% {border-color: green;}
 }
+
 .block-bg-color {
-  background-color: #f5f6f7; /*#edeff2*/
+  background-color: #edeff2; /*#edeff2*/
 }
 
 @media (max-width: 800px) {
   .block-bg-color {
-    background-color: #f5f6f7; /*#edeff2*/
-    border :rgb(255, 36, 36) solid 2px;
+    border :red solid 2px;
   }
   .mobile-child-flex-width {
     width: calc(100% - 2em);
@@ -1040,13 +1043,8 @@ color: white;
     overflow-y: scroll;
   }*/
 
-  .mobile-subsBigNum {
-    font-size: 4vh;
+  .viewsBig {
     padding-left: 4vw;
-  }
-
-  .mobile-subsBig {
-    font-size: 2vh;
   }
 
   .mobile-background {
@@ -1074,12 +1072,57 @@ color: white;
     height: auto;
   }
 
+  .modal-content{
+    width: 80%;
+    margin: 20% auto;
+  }
+
+  #channelInput{
+    font-size: 3vh;
+  }
+
+  .prestige {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .prestigeOption {
+    min-width : 10em;
+    min-height: 6em;
+  }
+
+  .reveal {
+    display: none;
+  }
+
+  .displayBlock { /*to keep spacing in blocks for elements with reveal*/
+    display: block !important;
+  }
+
+  #subProjectsB { /*To adjust analytics project height*/
+    height: 20% !important;
+  }
+
 }
 
 @media (max-width: 1140px) { /*To move analytics last and make ideas first on mobile*/
   .flex-order5 {
     order: 5;
   }
+  #subProjectsB { /*To adjust analytics project height*/
+    height: 10%;
+  }
+
+  .childFlexShort {
+    margin: 1% 1em 0em 1em;
+  }
+}
+
+
+
+.break {
+  flex-basis: 100%;
+  height: 0;
 }
 
 /*.white {
@@ -1090,6 +1133,12 @@ color: white;
   position: sticky;
   top: 5%;
 }*/
+
+
+.buttonMargin
+{
+  margin: 1em;
+}
 
 #icon-container {
   min-width: 55px;

@@ -63,19 +63,19 @@ var expensesComp = 0;
 var youtubePartner = 0; //0 for no 1 for yes
 
 //VISIBLE STATE ON LOAD - functions that change these var are located in PROJECTS
-var visiblePrestige = false;
-var visibleEditBlock = false;
-var visibleUploadBlock = false;
-var visibleAnalyticsBlock = false;
-var visibleCash = false;
-var visibleAdAmount = false;
-var visibleAutoEdit = false;
-var visibleProjectedAverage = false;
-var visibleExpenses = false;
-var visibleIncome = false;
-var visibleDonationBox = false;
+var visiblePrestige = true;
+var visibleEditBlock = true;
+var visibleUploadBlock = true;
+var visibleAnalyticsBlock = true;
+var visibleCash = true;
+var visibleAdAmount = true;
+var visibleAutoEdit = true;
+var visibleProjectedAverage = true;
+var visibleExpenses = true;
+var visibleIncome = true;
+var visibleDonationBox = true;
 
-//loadVisibleDivs(); //TO DELETE : FOR CODING PURPOSES
+loadVisibleDivs(); //TO DELETE : FOR CODING PURPOSES
 
 //COMMENTS
 var comments = [
@@ -589,6 +589,10 @@ function newArray(value, len) {
 }
 
 //click hold for edit
+SECircleContainer.addEventListener("touchstart", pressingDownEdit);
+SECircleContainer.addEventListener("touchend", pressingUpEdit);
+SECircleContainer.addEventListener("touchcancel", pressingUpEdit);
+
 SECircleContainer.addEventListener("mousedown", pressingDownEdit);
 SECircleContainer.addEventListener("mouseup", pressingUpEdit);
 SECircleContainer.addEventListener("mouseleave", pressingUpEdit);
@@ -596,7 +600,7 @@ childFlexTopNoRightClick.addEventListener('contextmenu', event => event.preventD
 var editInterval = null;
 
 function pressingDownEdit(event) {
-    if (event.type == "mousedown" && event.button == 0) {
+    if (event.type == "touchstart" || (event.type == "mousedown" && event.button == 0)) { //event.button to confirm left click
       editInterval = setInterval(clicksLeft,editPressSpeed);
     }
 }
@@ -611,7 +615,7 @@ function lessClicks(num){
     shootEditRem -= num
   }
   else {
-    shootEditRem -= (num+1)
+    shootEditRem -= (num + 1)
   }
 }
 
