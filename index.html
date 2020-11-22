@@ -134,8 +134,11 @@
                             onclick="stopIdeaTicker()" 
                             value="Sleep"/>
                   </div>
-              </div>    
-              <div class="bulbFrame" id="bulbFrameDiv"> 
+              </div>
+              
+              <div class="bulbFrame" id="bulbFrameDiv">
+                <div id="bulbCDcontainer"><span id="bulbCountDown">60</span></div>
+
                 <svg width="76px" height="94px" viewBox="0 0 76 94" id="bulb" onclick="void(0);">
                   <path d="M76,37.037 C76,59.939 55.6428571,75.427 55.6428571,93.5 L20.3571429,93.5 C20.3571429,75.427 0,59.9335 0,37.037 C0,13.1505 18.9891429,0 37.9782857,0 C56.9891429,0 76,13.167 76,37.037 L76,37.037 Z"></path>
                 </svg>
@@ -338,11 +341,11 @@
               </div>
               <div class="prestigeOption buttonMargin" id="option2" onclick="prestigeOptionSelect('option2')">
                 <p><b>Option 2</b></p>
-                <p>+25% editing speed</p>
+                <p>+50% editing speed</p>
               </div>
               <div class="prestigeOption buttonMargin" id="option3" onclick="prestigeOptionSelect('option3')">
                 <p><b>Option 3</b></p>
-                <p>+25% upload speed</p>
+                <p>+100% upload speed</p>
               </div>
             </div>
           </div>
@@ -473,6 +476,7 @@
             
              </table>
             </div>
+            <p id="contact">contact@notyoutube.dev</p>
           </div>
           <div class="modal-footer">
             <button class="button" id="gotoprestige" onclick="scoreModalClose()">Select prestige bonus</button>
