@@ -1382,20 +1382,21 @@ function scoreRefreshTimer() {
 
 //open scoreboard
 function scoreModalOpen(){
+  badboi();
   scoreRefreshTimer();
   const scoreboard = document.getElementById("scoreModal");
   scoreboard.style.display = "block";
   const closeModal = document.getElementById("closeScoreModal"); //to close modal through x
   closeModal.onclick = function() {
-  scoreboard.style.display = "none";
-  clearInterval(scoreRefresh);
+    scoreboard.style.display = "none";
+    clearInterval(scoreRefresh);
   }
 }
 
 //close scoreboard ONLY FOR Select prestige bonus
 function scoreModalClose(){ 
-  const scorebard = document.getElementById("scoreModal");
-  scorebard.style.display = "none";
+  const scoreboard = document.getElementById("scoreModal");
+  scoreboard.style.display = "none";
 }
 
 //RETRIEVE ALL SCORE FROM BACK
@@ -1425,7 +1426,7 @@ function updateLoading(){
 
 //SEND SCORE TO BACK
 async function sendScore(){
-  if (bad) {score = 100000};
+  if (bad) {score = 86400};
   const data = {channel, prestige, score};
   const options = {
     method: 'POST',
@@ -1454,7 +1455,14 @@ function endGame(){
   //allScores(); //show all scores
   startConfetti(); //start confetti yay
   const winSound = new Audio("winSound.mp3");
-  winSound.play();
+  var promise = winSound.play();
+if (promise !== undefined) {
+    promise.catch(error => {
+        // Auto-play was prevented
+    }).then(() => {
+        // Auto-play started
+    });
+}
 }
 
 //PRESTIGE FUNCTIONS BELOW
