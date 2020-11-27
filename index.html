@@ -54,7 +54,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
   </head>
   
-  <body class="mobile-background">
+  <body>
     <!-- Google Tag Manager (noscript) -->
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P6ZPSHH"
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -403,11 +403,12 @@
             <h2>Top 10 channels</h2>
           </div>
           <div class="modal-body">
-            <p id="yourScore">Your 
+            <p id="yourScore" class="tightP">Your 
               <span id="currentOrFinal">current</span> time <br>
               <span id="c" style="display:none;color:red;font-size:0.5em;"><em>Disqualified for console use</em></span>
               <span id="showScore"></span>
             </p>
+            <p id="rank">Your rank is <span id="rankNumber"></span></p>
             <div id="loading">
               <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
             </div>
@@ -491,6 +492,7 @@
         </div>
       </div>
 
+      <script src="torch.js" type="text/javascript"></script>
       <script type="text/javascript" src="dt.js"></script>
       <script src="fitty.min.js"></script>
       <script src="fittyProjects.js" type="text/javascript"></script>
